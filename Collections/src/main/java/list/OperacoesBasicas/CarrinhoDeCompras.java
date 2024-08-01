@@ -4,80 +4,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarrinhoDeCompras {
-  //atributos
-  private List<Item> itemList;
+    private List<Item> itemList;
 
-  public CarrinhoDeCompras() {
-    this.itemList = new ArrayList<>();
-  }
+    public CarrinhoDeCompras() {
+        this.itemList = new ArrayList<>();
+    }
 
-  public void adicionarItem(String nome, double preco, int quantidade) {
-    Item item = new Item(nome, preco, quantidade);
-    this.itemList.add(item);
-  }
+    public String addItem(String name, double price, int quantity) {
+        Item item = new Item(name, price, quantity);
+        itemList.add(item);
+        return "Item adicionado: " + item.getName() + " - Preço: " + item.getPrice() + " - Quantidade: " + item.getQuantity();
+    }
 
-  public void removerItem(String nome) {
-    List<Item> itensParaRemover = new ArrayList<>();
-    if (!itemList.isEmpty()) {
-      for (Item i : itemList) {
-        if (i.getNome().equalsIgnoreCase(nome)) {
-          itensParaRemover.add(i);
+    public void removeItem(String name) {
+        List<Item> removeItens = new ArrayList<>();
+
+        for (Item i : itemList) {
+            if (i.getName().equalsIgnoreCase(name)) {
+                removeItens.add(i);
+            }
         }
-      }
-      itemList.removeAll(itensParaRemover);
-    } else {
-      System.out.println("A lista está vazia!");
+        itemList.removeAll(removeItens);
     }
-  }
 
-  public double calcularValorTotal() {
-    double valorTotal = 0d;
-    if (!itemList.isEmpty()) {
-      for (Item item : itemList) {
-        double valorItem = item.getPreco() * item.getQuant();
-        valorTotal += valorItem; //valorTotal = valorTotal + valorItem;
-      }
-      return valorTotal;
-    } else {
-      throw new RuntimeException("A lista está vazia!");
+    public double calculateValueTotal() {
+        double total = 0;
+
+        for (Item i : itemList) {
+            total += i.getPrice() * i.getQuantity();
+        }
+        total = Math.round(total * 100.0) / 100.0;
+        System.out.println("O valor total dos itens é: " + total);
+
+        return total;
     }
-  }
 
-  public void exibirItens() {
-    if (!itemList.isEmpty()) {
-      System.out.println(this.itemList);
-    } else {
-      System.out.println("A lista está vazia!");
+    public void showItens() {
+        System.out.println(itemList);
     }
-  }
 
-  @Override
-  public String toString() {
-    return "CarrinhoDeCompras{" +
-        "itens=" + itemList +
-        '}';
-  }
+    public static void main(String[] args) {
+        CarrinhoDeCompras buy = new CarrinhoDeCompras();
 
-  public static void main(String[] args) {
-    // Criando uma instância do carrinho de compras
-    CarrinhoDeCompras carrinhoDeCompras = new CarrinhoDeCompras();
+        String item1 = buy.addItem("Compra 1", 18.34, 6);
+        System.out.println("A compra foi adicionada com sucesso\n" + item1);
 
-    // Adicionando itens ao carrinho
-    carrinhoDeCompras.adicionarItem("Lápis", 2d, 3);
-    carrinhoDeCompras.adicionarItem("Lápis", 2d, 3);
-    carrinhoDeCompras.adicionarItem("Caderno", 35d, 1);
-    carrinhoDeCompras.adicionarItem("Borracha", 2d, 2);
+        String item2 = buy.addItem("Compra 2", 200.46, 2);
+        System.out.println("A compra foi adicionada com sucesso\n" + item2);
 
-    // Exibindo os itens no carrinho
-    carrinhoDeCompras.exibirItens();
+        String item3 = buy.addItem("Compra 3", 56.43, 7);
+        System.out.println("A compra foi adicionada com sucesso\n" + item3);
 
-    // Removendo um item do carrinho
-    carrinhoDeCompras.removerItem("Lápis");
+        buy.removeItem("Compra 3");
+        buy.showItens();
 
-    // Exibindo os itens atualizados no carrinho
-    carrinhoDeCompras.exibirItens();
-
-    // Calculando e exibindo o valor total da compra
-    System.out.println("O valor total da compra é = " + carrinhoDeCompras.calcularValorTotal());
-  }
+        buy.calculateValueTotal();
+    }
 }

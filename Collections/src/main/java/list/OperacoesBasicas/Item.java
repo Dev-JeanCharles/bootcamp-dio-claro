@@ -1,35 +1,35 @@
 package main.java.list.OperacoesBasicas;
 
 public class Item {
-  //atributos
-	private String nome;
-	private double preco;
-	private int quant;
 
-	public Item(String nome, double preco, int quant) {
-		this.nome = nome;
-		this.preco = preco;
-		this.quant = quant;
-	}
+    private String name;
+    private Double price;
+    private Integer quantity;
 
-	public String getNome() {
-		return nome;
-	}
+    public Item(String name, Double price, Integer quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
-	public double getPreco() {
-		return preco;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public int getQuant() {
-		return quant;
-	}
+    public Double getPrice() {
+        return price;
+    }
 
-	@Override
-	public String toString() {
-		return "Item{" +
-				"nome='" + nome + '\'' +
-				", preco=" + preco +
-				", quant=" + quant +
-				'}';
-	}
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
