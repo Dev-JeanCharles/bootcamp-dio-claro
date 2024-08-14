@@ -21,8 +21,8 @@ public class ShoulderEvents {
     }
 
     public void getProxEvent() {
-        /*Set<LocalDate> dateSet = eventMap.keySet();
-        Collection<Event> values = eventMap.values();*/
+        Set<LocalDate> dateSet = eventMap.keySet();
+        Collection<Event> values = eventMap.values();
 //      eventMap.get()
 
         LocalDate dateNow = LocalDate.now();
